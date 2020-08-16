@@ -1,4 +1,4 @@
-import random
+from random import choice
 
 class Words:
     """Holds the list of words to be used in the game."""
@@ -12,7 +12,7 @@ class Words:
     def get_rand_word(self) -> str:
         """Returns a random word from the list of words."""
 
-        return random.choice(self.list)
+        return choice(self.list)
 
         
     def load(self) -> list:

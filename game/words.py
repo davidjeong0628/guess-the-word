@@ -14,14 +14,26 @@ class Words:
 
         return choice(self.list)
 
-    
-    def get_letters_frequency(self, word: str) -> list:
+
+    def get_freq_letter(self, word: str, rank: int=1) -> str:
         """
-        Returns a list of tuples of letter and its frequency in 'word'. 
+        Returns the letter with the highest frequency in 'word'.
+
+        If 'rank' is specified, the letter with the ('rank')th highest
+        frequency is returned. 
+        """
+
+        letters_freq = self.get_letters_sort_freq(word)
+
+        return letters_freq[rank - 1][0]
+
+    
+    def get_letters_sort_freq(self, word: str) -> list:
+        """
+        Returns a list of tuples of letter and its frequency in 'word' in
+        descending order based on frequency. 
         """
         
-        # To store letters and their frequency as keys and values,
-        # respectively.
         letters_count = dict()
         
         for letter in word:
@@ -30,11 +42,9 @@ class Words:
             else:
                 letters_count[letter] = 1
         
-        # Sorts 'letters_count' in descending order based on the frequency,
-        # not letters.
         letters_count = sorted(
             letters_count.items(), key=lambda x: x[1], reverse=True)
-
+            
         return letters_count
 
         

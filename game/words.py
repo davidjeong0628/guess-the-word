@@ -6,19 +6,19 @@ class WordList:
     def __init__(self):
         """Initializes the list of words."""
 
-        self.list = self.load()
+        self.__list = self.__load()
 
 
     def get_rand_word(self) -> str:
         """Returns a random word from the list of words."""
 
-        return choice(self.list)
+        return choice(self.__list).strip()
 
 
-    def load(self) -> list:
+    def __load(self) -> list:
         """Loads words from 'words_alpha.txt'."""
         
-        with open('resources/words_alpha.txt') as f:
+        with open('../resources/words_alpha.txt') as f:
             words = f.readlines()
         
         return words
@@ -31,6 +31,7 @@ class Word:
         """Initializes the content of the word."""
 
         self.__content = content
+        self.__letters_sort_freq = self.__load_letters_sort_freq()
         
         
     def get_content(self) -> str:
@@ -42,7 +43,7 @@ class Word:
     def get_unique_count(self) -> int:
         """Returns the number of unique letters."""
 
-        return len(set(self.__content))
+        return len(self.__letters_sort_freq)
 
 
     def get_freq_letter(self, index: int=0) -> str:
@@ -53,12 +54,19 @@ class Word:
         tuples of letters and their frequency is returned.
         """
 
-        letters_freq = self.get_letters_sort_freq()
+        return self.__letters_sort_freq[index][0]
 
-        return letters_freq[index][0]
+
+    def get_letters_sort_freq(self) -> list:
+        """
+        Returns a list of tuples of letter and its frequency in
+        descending order based on frequency. 
+        """
+
+        return self.__letters_sort_freq
 
     
-    def get_letters_sort_freq(self) -> list:
+    def __load_letters_sort_freq(self) -> list:
         """
         Returns a list of tuples of letter and its frequency in
         descending order based on frequency. 

@@ -26,10 +26,10 @@ class WordListTestCase(unittest.TestCase):
         Checks that the file containing the words was loaded correctly.
         """
 
-        with open('resources/words_alpha.txt') as f:
+        with open('../resources/words_alpha.txt') as f:
             actual_file = f.readlines()
 
-        self.assertListEqual(self.words.list, actual_file)
+        self.assertListEqual(self.words._WordList__list, actual_file)
 
 
 class WordTestCase(unittest.TestCase):

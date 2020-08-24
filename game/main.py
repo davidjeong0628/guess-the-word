@@ -18,7 +18,7 @@ def main():
             print(f'\nThe word was {word}!')
         
         user_input = \
-            input("Enter anything to continue or 'q' or 'Q' to quit: ")
+            input("Press ENTER to continue or 'q' or 'Q' to quit: ")
         
         if user_input == 'q' or user_input == 'Q':
             print('Exiting game...')

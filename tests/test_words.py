@@ -9,18 +9,9 @@ class WordListTestCase(unittest.TestCase):
     def setUp(self):
         """Creates an instance of 'WordList'."""
 
-        self.words = WordList()
+        self.word_list = WordList()
 
-    
-    def test_get_rand_word(self):
-        """Checks that a word was returned."""
 
-        for i in range(50):
-            word = self.words.get_rand_word()
-            
-            self.assertTrue(word)
-    
-    
     def test_load(self):
         """
         Checks that the file containing the words was loaded correctly.
@@ -29,9 +20,18 @@ class WordListTestCase(unittest.TestCase):
         with open('../resources/words_alpha.txt') as f:
             actual_file = f.readlines()
 
-        self.assertListEqual(self.words._WordList__list, actual_file)
+        self.assertListEqual(self.word_list._WordList__list, actual_file)
 
+    
+    def test_get_rand_word(self):
+        """Checks that a word was returned."""
 
+        for i in range(25):
+            word = self.word_list.get_rand_word()
+            
+            self.assertTrue(word)
+    
+    
 class WordTestCase(unittest.TestCase):
     """Test case for the 'game.Word' class."""
 
@@ -61,6 +61,12 @@ class WordTestCase(unittest.TestCase):
 
         self.assertEqual(self.std_word, Word(self.std_word).get_content())
 
+        self.assertEqual(self.len_one_word,
+            Word(self.len_one_word).get_content())
+
+        self.assertEqual(self.one_uniq_word,
+            Word(self.one_uniq_word).get_content())
+
     
     def test_get_unique_count(self):
         """Checks that the number of unique letters is correctly counted."""
@@ -83,6 +89,7 @@ class WordTestCase(unittest.TestCase):
 
         std_word_count = [('e', 2), ('s', 2), ('r', 1), ('p', 1), ('o', 1),
             ('n', 1), ('i', 1), ('b', 1), ('l', 1)]
+            
         len_one_word_count = [('a', 1)]
         one_uniq_word_count = [('a', 11)]
 

@@ -25,7 +25,7 @@ class WordList:
 
 
 class Word:
-    """Represents an English word."""
+    """Represents a word."""
 
     def __init__(self, content: str):
         """Initializes the content of the word."""
